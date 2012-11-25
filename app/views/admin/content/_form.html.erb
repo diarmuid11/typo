@@ -100,14 +100,14 @@
     <%= render('images', { :images => @images}) unless @images.empty? %>
 
     <div id='editor-menu'>
-		<ul class="tabs">
-			<li id="f" class='<%= "active" if current_user.editor == 'visual' %>'>
-				<%= build_editor_link("Visual", 'insert_editor', 'fck', 'visual_editor', 'visual') %>
-			</li>
-			<li id="s" class='<%= "active" if current_user.editor == 'simple' %> '>
-				<%= build_editor_link("HTML", 'insert_editor', 'simple', 'simple_editor', 'simple') %>
-			</li>
-		</ul>
+    <ul class="tabs">
+      <li id="f" class='<%= "active" if current_user.editor == 'visual' %>'>
+        <%= build_editor_link("Visual", 'insert_editor', 'fck', 'visual_editor', 'visual') %>
+      </li>
+      <li id="s" class='<%= "active" if current_user.editor == 'simple' %> '>
+        <%= build_editor_link("HTML", 'insert_editor', 'simple', 'simple_editor', 'simple') %>
+      </li>
+    </ul>
     </div>
 
     <div id="editor">
@@ -125,7 +125,7 @@
       </div>
     </div>
 
-		<h4><%= _("Tags") %></h4>
+    <h4><%= _("Tags") %></h4>
     <div class='class'>
       <%= text_field 'article', 'keywords', {:autocomplete => 'off', :style => 'width: 100%'} %>
     </div>
@@ -147,6 +147,11 @@
       <%= render 'admin/content/attachment', { :attachment_num => 1, :hidden => false } -%>
     </ul>
   </div>    
+  
+  <div class=''>
+    <h4><%= _("Merge Articles") %></h4>
+    <input type="text" id="merge_with" name="merge_with" />
+    <input type="submit" id="merge" name="merge" value="merge" />
   </div>
 
 </div>
