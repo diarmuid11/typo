@@ -125,6 +125,11 @@ class Admin::ContentController < Admin::BaseController
     end
   end
 
+  def merge_with_article(article1_id,article2_id)
+    a1=Article.find(article1_id)
+    a1.merge(article2_id)
+  end
+
   attr_accessor :resources, :categories, :resource, :category
 
   def do_add_or_remove_fu
@@ -149,6 +154,10 @@ class Admin::ContentController < Admin::BaseController
     if request.post?
       if params[:article][:draft]
         get_fresh_or_existing_draft_for_article
+      elsif params[:merge]
+        merge_with_article id,params[:merge_with]
+        redirect_to :action => 'index'
+        return
       else
         if not @article.parent_id.nil?
           @article = Article.find(@article.parent_id)

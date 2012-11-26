@@ -71,6 +71,12 @@ class Article < Content
     end
   end
 
+  def merge(id)
+    a2=Article.find(id)
+    self.body = self.body + a2.body
+    self.save
+  end
+
   def set_permalink
     return if self.state == 'draft'
     self.permalink = self.title.to_permalink if self.permalink.nil? or self.permalink.empty?
@@ -466,4 +472,5 @@ class Article < Content
     to = to - 1 # pull off 1 second so we don't overlap onto the next day
     return from..to
   end
+
 end
